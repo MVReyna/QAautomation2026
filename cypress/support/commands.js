@@ -23,3 +23,16 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+//Comando login
+Cypress.Commands.add('login', (user, pass) => {
+    cy.visit('https://www.saucedemo.com/')
+    cy.get('[data-test="username"]').type(user)
+    cy.get('[data-test="password"]').type(pass)
+    cy.get('[data-test="login-button"]').click()
+    cy.url().should('include', '/inventory.html')
+})
+
+Cypress.Commands.add('agregarAlCarrito', () => {
+    cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+})
