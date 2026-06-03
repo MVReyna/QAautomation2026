@@ -3,38 +3,25 @@
 describe('SauceDemo - Sin comandos personalizados', () => {
 
     beforeEach(() => {
-        cy.visit('https://www.saucedemo.com/')
-        cy.get('[data-test="username"]').type('standard_user')
-        cy.get('[data-test="password"]').type('secret_sauce')
-        cy.get('[data-test="login-button"]').click()
-        cy.url().should('include', '/inventory.html')
+        cy.login('standard_user', 'secret_sauce')
     })
 
-    it('Compra completa con un producto', () => {
+    it.only('Compra completa con un producto', () => {
 
         // Agregar producto al carrito
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+        cy.agregarAlCarrito('sauce-labs-bike-light')
         cy.get('.shopping_cart_badge').should('have.text', '1')
 
         // Ir al carrito
-        cy.get('.shopping_cart_link').click()
-        cy.url().should('include', '/cart.html')
+        cy.irAlCarrito()
         cy.get('.cart_item').should('have.length', 1)
+            // cy.wait(5000)
 
-        // Iniciar checkout
-        cy.get('[data-test="checkout"]').click()
-        cy.url().should('include', '/checkout-step-one.html')
-
-        // Completar formulario — igual que antes
-        cy.get('[data-test="firstName"]').type('Juan')
-        cy.get('[data-test="lastName"]').type('Pérez')
-        cy.get('[data-test="postalCode"]').type('5000')
-        cy.get('[data-test="continue"]').click()
-        cy.url().should('include', '/checkout-step-two.html')
+        // Completar checkout
+        cy.completarCheckout('Juan', 'Perez', '5000')
 
         // Confirmar pedido
-        cy.get('[data-test="finish"]').click()
-        cy.get('.complete-header').should('have.text', 'Thank you for your order!')
+        cy.confirmarPedido()
     })
 
 

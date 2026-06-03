@@ -33,6 +33,16 @@ Cypress.Commands.add('login', (user, pass) => {
     cy.url().should('include', '/inventory.html')
 })
 
-Cypress.Commands.add('agregarAlCarrito', () => {
-    cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+Cypress.Commands.add('agregarAlCarrito', (producto) => {
+    cy.get(`[data-test="add-to-cart-${producto}"]`).click()
+})
+
+Cypress.Commands.add('irAlCarrito', () => {
+    cy.get('.shopping_cart_link').click()
+    cy.url().should('include', '/cart.html')
+})
+
+Cypress.Commands.add('confirmarPedido', () => {
+    cy.get('[data-test="finish"]').click()
+    cy.get('.complete-header').should('have.text', 'Thank you for your order!')
 })
