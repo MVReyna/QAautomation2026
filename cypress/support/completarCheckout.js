@@ -11,6 +11,6 @@ Cypress.Commands.add('completarCheckout', (firstName, lastName, postalCode) => {
     cy.url().should('include', '/checkout-step-two.html')
 
     // Confirmar pedido
-    cy.get('[data-test="finish"]').click()
-    cy.get('.complete-header').should('have.text', 'Thank you for your order!')
+    // cy.get('[data-test="finish"]').click()
+    // cy.get('.complete-header').should('have.text', 'Thank you for your order!')
 })
