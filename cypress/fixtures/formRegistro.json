@@ -1,0 +1,30 @@
+{
+    "registroValido": {
+        "nombre": "Pablo Díaz",
+        "fechaNacimiento": "2010-10-05",
+        "genero": "male",
+        "email": "pablo.diaz@mail.com",
+        "telefono": "3518659656",
+        "direccion": {
+            "calle": "Av. Corrientes 1234",
+            "ciudad": "Cordoba",
+            "codigoPostal": "5000"
+        },
+        "comentarios": "Datos cargados dese fixture formRegistro de Cypress",
+        "interes": "testing",
+        "experiencia": "7"
+
+    },
+
+    "registroInvalido": {
+        "nombre": "Pablo Díaz",
+        "email": "pablo.diaz@mail.com",
+        "telefono": "3518659656",
+        "direccion": {
+            "calle": "Av. Corrientes 1234",
+            "ciudad": "Cordoba",
+            "codigoPostal": "5000"
+        }
+    }
+
+}
