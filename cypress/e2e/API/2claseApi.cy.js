@@ -6,15 +6,15 @@ describe('Validar login', () => {
 
         cy.visit('https://conduit.bondaracademy.com')
         cy.contains(/sign up/i).click()
-        cy.get('[Placeholder="Username"]').type('NameOK1')
-        cy.get('[Placeholder="Email"]').type('mail@gmail.com')
-        cy.get('[Placeholder="Password"]').type('Pass1238')
+        cy.get('[placeholder="Username"]').type(`NombreOK${Date.now()}`)
+        cy.get('[placeholder="Email"]').type(`mail${Date.now()}@gmail.com`)
+        cy.get('[placeholder="Password"]').type('Pass1238')
         cy.get('.btn').click()
 
         cy.wait('@userCreado').then((interception) => {
             expect(interception.response.statusCode).to.equal(201)
             expect(interception.response.body.user)
-            to.have.property('email', 'mail@gmail.com')
+                .to.have.property('email', 'mail@gmail.com')
             cy.log('Vamo mi rey!')
 
         })
